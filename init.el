@@ -10,6 +10,14 @@
 (define-key isearch-mode-map [dead-diaeresis] nil)
 (define-key isearch-mode-map [dead-tilde] nil)
 
+; add custom commands
+ ; cut out line
+(defun kill-whole-line ()
+  (interactive)
+  (beginning-of-line)
+  (kill-line)) 
+(global-set-key (kbd "C-S-x") 'kill-whole-line)
+
 ; auto-complete
 (add-to-list 'load-path "/home/patti/.emacs.d/")
 (require 'auto-complete-config)
@@ -17,6 +25,7 @@
 (ac-config-default)
 (add-to-list 'ac-modes 'html-mode)
 (add-to-list 'ac-modes 'nxml-mode)
+(add-to-list 'ac-modes 'latex-mode)
 
 ; tml - support ; wip
 (setq auto-mode-alist (cons '("\\.tml$" . nxml-mode) auto-mode-alist))
