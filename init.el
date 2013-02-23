@@ -49,6 +49,7 @@
 ; ido - mode
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+(setq ido-max-directory-size 100000)
 (ido-mode 1)
 
 ; epa enable
