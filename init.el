@@ -37,7 +37,7 @@
 
 ; add slime
 (add-to-list 'load-path "~/.emacs.d/slime/")  ; your SLIME directory
-(setq inferior-lisp-program "/usr/bin/clisp") ; your Lisp system
+(setq inferior-lisp-program "/usr/bin/sbcl") ; your Lisp system
 (require 'slime)
 (slime-setup '(slime-fancy)) ; almost everything
 
@@ -51,6 +51,10 @@
 (setq ido-everywhere t)
 (setq ido-max-directory-size 100000)
 (ido-mode 1)
+
+; scala - mode
+(add-to-list 'load-path "~/.emacs.d/scala-mode/")
+(require 'scala-mode-auto)
 
 ; epa enable
 (epa-file-enable)
@@ -83,6 +87,9 @@
 (set-cursor-color "DarkOrange")
 (set-background-color "black")
 (set-foreground-color "white")
+
+; enable printing
+(setq lpr-page-header-switches (quote ("-o6")))
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
