@@ -83,6 +83,14 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+; elpa config
+(require 'package)
+;; Any add to list for package-archives (to add marmalade or melpa) goes here
+(add-to-list 'package-archives 
+	     '("marmalade" .
+	       "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ; color set
 (set-cursor-color "DarkOrange")
 (set-background-color "black")
