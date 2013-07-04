@@ -17,11 +17,21 @@
   (beginning-of-line)
   (kill-line)) 
 (global-set-key (kbd "C-S-x") 'kill-whole-line)
+ ; find and insert path
+(defun find-and-insert-path ()
+  (interactive)
+  (let ((origin (current-buffer)))
+    (ido-find-file)
+    (let ((name (buffer-file-name)))
+      (kill-buffer (current-buffer))
+      (switch-to-buffer origin)
+      (insert name))))
+
 
 ; auto-complete
 (add-to-list 'load-path "/home/patti/.emacs.d/")
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "/home/patti/.emacs.d//ac-dict")
+(add-to-list 'ac-dictionary-directories "/home/patti/.emacs.d/ac-dict")
 (ac-config-default)
 (add-to-list 'ac-modes 'html-mode)
 (add-to-list 'ac-modes 'nxml-mode)
@@ -52,6 +62,14 @@
 (setq ido-max-directory-size 100000)
 (ido-mode 1)
 
+; elpa config
+(require 'package)
+;; Any add to list for package-archives (to add marmalade or melpa) goes here
+(add-to-list 'package-archives 
+	     '("marmalade" .
+	       "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ; scala - mode
 (add-to-list 'load-path "~/.emacs.d/scala-mode/")
 (require 'scala-mode-auto)
@@ -69,6 +87,9 @@
 (defun flymake-get-tex-args (file-name)
   (list "latex" (list "-file-line-error-style" "-interaction=nonstopmode" file-name)))
 
+; idris-mode
+(add-to-list 'load-path "~/.emacs.d/idris-mode/")
+;;;;;;;(require 'idris-mode)
 
 ; replace js-mode by js2-mode for proper indentation
 (autoload 'js2-mode "js2-mode" nil t)
@@ -82,14 +103,6 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-; elpa config
-(require 'package)
-;; Any add to list for package-archives (to add marmalade or melpa) goes here
-(add-to-list 'package-archives 
-	     '("marmalade" .
-	       "http://marmalade-repo.org/packages/"))
-(package-initialize)
 
 ; color set
 (set-cursor-color "DarkOrange")
