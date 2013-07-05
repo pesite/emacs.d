@@ -27,6 +27,10 @@
       (switch-to-buffer origin)
       (insert name))))
 
+; commands for multiple cursor mode
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ; auto-complete
 (add-to-list 'load-path "/home/patti/.emacs.d/")
@@ -108,6 +112,9 @@
 (set-cursor-color "DarkOrange")
 (set-background-color "black")
 (set-foreground-color "white")
+
+; deactivate copy on setting mouse mark
+(setq mouse-drag-copy-region nil)
 
 ; enable printing
 (setq lpr-page-header-switches (quote ("-o6")))
