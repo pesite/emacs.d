@@ -27,6 +27,9 @@
       (switch-to-buffer origin)
       (insert name))))
 
+; activate delete selection mode - to delete regions fully, when selected a backspace hit
+(delete-selection-mode)
+
 ; commands for multiple cursor mode
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
