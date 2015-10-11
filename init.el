@@ -18,7 +18,7 @@
 (add-to-list 'load-path "/home/patti/.emacs.d/lisp")
 (add-to-list 'load-path "/home/patti/.emacs.d/base")
 
-; set auto-save file handling
+;; set auto-save file handling
 ;; Save all tempfiles in $TMPDIR/emacs$UID/                                                  
 (defconst emacs-tmp-dir (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
 (setq backup-directory-alist
@@ -28,21 +28,24 @@
 (setq auto-save-list-file-prefix
       emacs-tmp-dir)
 
-; set default splitting to vertical
+;; remove trailing whitespaces on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; set default splitting to vertical
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
-; set default font
+;; set default font
 (set-default-font "-b&h-lucidatypewriter-medium-r-normal-sans-12-116-75-75-m-70-iso10646-1")
 
-; add custom commands
- ; cut out line
+;; add custom commands
+ ;;; cut out line
 (defun kill-whole-line ()
   (interactive)
   (beginning-of-line)
   (kill-line)) 
 (global-set-key (kbd "C-S-x") 'kill-whole-line)
- ; find and insert path
+ ;;; find and insert path
 (defun find-and-insert-path ()
   (interactive)
   (let ((origin (current-buffer)))
@@ -52,10 +55,10 @@
       (switch-to-buffer origin)
       (insert name))))
 
-; activate delete selection mode - to delete regions fully, when selected a backspace hit
+;; activate delete selection mode - to delete regions fully, when selected a backspace hit
 (delete-selection-mode)
 
-; commands for multiple cursor mode
+;; commands for multiple cursor mode
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
