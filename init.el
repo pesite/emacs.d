@@ -130,3 +130,215 @@
 (if (fboundp 'ac-config-default)
     (ac-config-default)
   (message "Please install auto-complete."))
+
+;; auto multi-web-mode
+(setq auto-mode-alist
+      (append
+       (list (cons "\\.php$"  'multi-web-mode)
+	     ;; (cons "\\.other-extensions$"     'promela-mode)
+	     )
+       auto-mode-alist))
+
+;; add promela mode
+(require 'promela-mode)
+(autoload 'promela-mode "promela-mode" "PROMELA mode" nil t)
+(setq auto-mode-alist
+      (append
+       (list (cons "\\.promela$"  'promela-mode)
+	     (cons "\\.spin$"     'promela-mode)
+	     (cons "\\.pml$"      'promela-mode)
+	     ;; (cons "\\.other-extensions$"     'promela-mode)
+	     )
+       auto-mode-alist))
+
+;; add nusmv mode
+(autoload 'nusmv-mode "nusmv-mode" "Major mode for NuSMV specification files." t)
+(setq auto-mode-alist
+      (append (list '("\\.smv$" . nusmv-mode))
+              auto-mode-alist))
+
+(autoload 'nusmv-m4-mode "nusmv-mode" " `nusmv-mode' with m4 support." t)
+(setq auto-mode-alist
+      (append  (list '("\\.m4.smv$" . nusmv-m4-mode))
+               auto-mode-alist))
+
+;; add slime
+(add-to-list 'load-path "~/.emacs.d/slime/")  ; your SLIME directory
+(setq inferior-lisp-program "/usr/bin/sbcl") ; your Lisp system
+(require 'slime)
+(slime-setup '(slime-fancy)) ; almost everything
+
+;; add some mode bindings
+(setq auto-mode-alist (cons '("\\.octave$" . octave-mode) auto-mode-alist))
+
+;; scala - mode
+(add-to-list 'load-path "~/.emacs.d/scala-mode/")
+(require 'scala-mode-auto)
+
+;; add jslint for javascript validation
+(require 'flymake-jslint)
+(add-hook 'javascript-mode-hook
+          (lambda () (flymake-mode 1)))
+
+;; flymake cursor and other settings
+(require 'flymake-cursor)
+(defun flymake-get-tex-args (file-name)
+  (list "latex" (list "-file-line-error-style" "-interaction=nonstopmode" file-name)))
+
+;; replace js-mode by js2-mode for proper indentation
+(autoload 'js2-mode "js2-mode" nil t)
+    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;; Configure flymake for Python
+(setq pylint "/usr/bin/epylint")
+;; (when (load "flymake" t)
+;;   (defun flymake-pylint-init ()
+;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-inplace))
+;;            (local-file (file-relative-name
+;;                         temp-file
+;;                         (file-name-directory buffer-file-name))))
+;;       (list (expand-file-name pylint "") (list local-file))))
+;;   (add-to-list 'flymake-allowed-file-name-masks
+;;                '("\\.py\\'" flymake-pylint-init)))
+
+;; Set as a minor mode for Python
+(add-hook 'python-mode-hook '(lambda () (flymake-mode)))
+
+;; To avoid having to mouse hover for the error message, these functions make flymake error messages
+;; appear in the minibuffer
+(defun show-fly-err-at-point ()
+  "If the cursor is sitting on a flymake error, display the message in the minibuffer"
+  (require 'cl)
+  (interactive)
+  (let ((line-no (line-number-at-pos)))
+    (dolist (elem flymake-err-info)
+      (if (eq (car elem) line-no)
+      (let ((err (car (second elem))))
+        (message "%s" (flymake-ler-text err)))))))
+
+(add-hook 'post-command-hook 'show-fly-err-at-point)
+
+;; flymake for html
+(defun flymake-html-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+		     'flymake-create-temp-inplace))
+	 (local-file (file-relative-name
+		      temp-file
+		      (file-name-directory buffer-file-name))))
+    (list "tidy" (list local-file))))
+
+(add-to-list 'flymake-allowed-file-name-masks
+	     '("\\.html$\\|\\.ctp" flymake-html-init))
+
+(add-to-list 'flymake-err-line-patterns
+	     '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
+	       nil 1 2 4))
+
+;; Flymake for LaTeX
+(defun flymake-get-tex-args (file-name)
+  (list "/home/patti/texlive/dist/bin/x86_64-linux/chktex" (list "-g0" "-r" "-l" (expand-file-name "~/.chktexrc") "-I" "-q" "-v0" file-name)))
+(push
+ '("^\\(\.+\.tex\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
+   1 2 3 4) flymake-err-line-patterns)
+
+;; cmake mode
+(require 'cmake-mode)
+(add-to-list 'auto-mode-alist '("CMakeLists.txt$" . cmake-mode))
+
+;; ParEdit
+(require 'paredit)
+(add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'scheme-mode-hook 'enable-paredit-mode)
+(add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+
+;; rust mode
+(add-to-list 'load-path "~/.emacs.d/rust-mode/")
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+;; window speedbar
+(require 'sr-speedbar)
+
+;; auto-completion
+(require 'cc-mode)
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode 1)
+(setq-default ac-sources '(ac-source-semantic-raw))
+
+;; config multi-web-mode
+(with-eval-after-load 'multi-web-mode
+  (setq mweb-default-major-mode 'html-mode)
+  (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                    (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                    (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+  (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+  (multi-web-global-mode 1))
+
+;; add gccsense
+(require 'gccsense)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (local-set-key (kbd "<C-tab>") 'ac-complete-gccsense)))
+
+;; tags
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (eshell-command 
+   (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
+
+  ;;;  Jonas.Jarnestrom<at>ki.ericsson.se A smarter               
+  ;;;  find-tag that automagically reruns etags when it cant find a               
+  ;;;  requested item and then makes a new try to locate it.                      
+  ;;;  Fri Mar 15 09:52:14 2002
+(defadvice find-tag (around refresh-etags activate)
+  "Rerun etags and reload tags if tag not found and redo find-tag.              
+   If buffer is modified, ask about save before running etags."
+  (let ((extension (file-name-extension (buffer-file-name))))
+    (condition-case err
+        ad-do-it
+      (error (and (buffer-modified-p)
+                  (not (ding))
+                  (y-or-n-p "Buffer is modified, save it? ")
+                  (save-buffer))
+             (er-refresh-etags extension)
+             ad-do-it))))
+(defun er-refresh-etags (&optional extension)
+  "Run etags on all peer files in current dir and reload them silently."
+  (interactive)
+  (shell-command (format "etags *.%s" (or extension "el")))
+  (let ((tags-revert-without-query t))  ; don't query, revert silently          
+    (visit-tags-table default-directory nil)))
+
+;;; semantic auto-completion -- http://emacswiki.org/emacs/AutoCompleteSources#toc6
+(defun ac-semantic-construct-candidates (tags)
+  "Construct candidates from the list inside of tags."
+  (apply 'append
+         (mapcar (lambda (tag)
+                   (if (listp tag)
+                       (let ((type (semantic-tag-type tag))
+                             (class (semantic-tag-class tag))
+                             (name (semantic-tag-name tag)))
+                         (if (or (and (stringp type)
+                                      (string= type "class"))
+                                 (eq class 'function)
+                                 (eq class 'variable))
+                             (list (list name type class))))))
+                 tags)))
+
+
+(defvar ac-source-semantic-analysis nil)
+(setq ac-source-semantic
+      `((sigil . "b")
+        (init . (lambda () (setq ac-source-semantic-analysis
+                                 (condition-case nil
+                                     (ac-semantic-construct-candidates (semantic-fetch-tags))))))
+        (candidates . (lambda ()
+                        (if ac-source-semantic-analysis
+                            (all-completions ac-target (mapcar 'car ac-source-semantic-analysis)))))))
