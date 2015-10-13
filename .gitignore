@@ -3,3 +3,8 @@ session*
 tramp
 ac-comphist.dat
 *~
+semanticdb/
+elpa/
+recentf
+.smex-items
+init.tar.gz
