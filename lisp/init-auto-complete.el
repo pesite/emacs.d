@@ -61,5 +61,19 @@
 
 (setq dabbrev-friend-buffer-function 'sanityinc/dabbrev-friend-buffer)
 
+;; load ac-ispell
+;; Completion words longer than 3 characters
+(require-package 'ac-ispell)
+(custom-set-variables
+  '(ac-ispell-requires 3)
+  '(ac-ispell-fuzzy-limit 2))
+
+(eval-after-load "auto-complete"
+  '(progn
+     (ac-ispell-setup)))
+
+(add-hook 'org-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'text-mode-hook 'ac-ispell-ac-setup)
+(add-hook 'html-mode-hook 'ac-ispell-ac-setup)
 
 (provide 'init-auto-complete)
