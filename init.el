@@ -31,7 +31,7 @@
 (require 'init-ido)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
-(require 'init-multi-web-mode)
+(require 'init-multi-web)
 (require 'init-slime)
 (require 'init-gccsense)
 (require 'init-promela)
@@ -47,7 +47,7 @@
 (require 'init-rust)
 (require 'init-speedbar)
 (require 'init-semantic)
-(require 'init-multi-web)
+
 
 (provide 'init)
 
