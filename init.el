@@ -31,6 +31,8 @@
 (require 'init-ido)
 (require 'init-hippie-expand)
 (require 'init-auto-complete)
+(require 'init-helm)
+;;(require 'init-helm-thierry)
 (require 'init-multi-web)
 (require 'init-slime)
 (require 'init-gccsense)
