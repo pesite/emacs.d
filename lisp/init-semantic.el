@@ -6,6 +6,6 @@
 (global-semantic-idle-scheduler-mode 1)
 
 (semantic-mode 1)
-(setq-default ac-sources '(ac-source-semantic-raw))
+(set-default 'ac-sources (append (default-value 'ac-sources) '(ac-source-semantic-raw)))
 
 (provide 'init-semantic)
