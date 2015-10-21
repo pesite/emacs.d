@@ -49,7 +49,7 @@
 (require 'init-rust)
 (require 'init-speedbar)
 (require 'init-semantic)
-
+(require 'init-flycheck)
 
 (provide 'init)
 
