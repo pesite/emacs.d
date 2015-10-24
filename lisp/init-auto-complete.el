@@ -54,12 +54,16 @@
                 inferior-emacs-lisp-mode))
   (add-to-list 'ac-modes mode))
 
-
 ;; Exclude very large buffers from dabbrev
 (defun sanityinc/dabbrev-friend-buffer (other-buffer)
   (< (buffer-size other-buffer) (* 1 1024 1024)))
 
 (setq dabbrev-friend-buffer-function 'sanityinc/dabbrev-friend-buffer)
+
+;; Disable completion by RET, if context menu is not shown
+(define-key ac-completing-map "\C-m" nil)
+(setq ac-use-menu-map t)
+(define-key ac-menu-map "\C-m" 'ac-complete)
 
 ;; load ac-ispell
 ;; Completion words longer than 3 characters
