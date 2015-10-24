@@ -50,6 +50,7 @@
 (require 'init-speedbar)
 (require 'init-semantic)
 (require 'init-flycheck)
+(require 'init-go)
 
 (provide 'init)
 
