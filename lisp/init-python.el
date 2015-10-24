@@ -15,4 +15,9 @@
 ;; Set as a minor mode for Python
 (add-hook 'python-mode-hook '(lambda () (flymake-mode)))
 
+;; install and configure jedi
+(require-package 'jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t) ; optional
+
 (provide 'init-python)
