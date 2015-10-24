@@ -6,6 +6,7 @@ ac-comphist.dat
 semanticdb/
 elpa/
 tmp/
+eshell/
 recentf
 .smex-items
 init.tar.gz
