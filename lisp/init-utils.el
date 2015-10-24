@@ -85,5 +85,15 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
+;;----------------------------------------------------------------------------
+;; Call command, if exists, else warn
+;; from: http://emacs-fu.blogspot.de/2008/12/running-some-external-program-only-if.html
+;;----------------------------------------------------------------------------
+(defun shell-command-maybe (exe &optional paramstr)
+  "run executable EXE with PARAMSTR, or warn if EXE's not available; eg. "
+  " (shell-command-maybe \"ls\" \"-l -a\")"
+  (if (executable-find exe)
+      (shell-command (concat exe " " paramstr))
+    (message (concat "'" exe "' not found found; please install"))))
 
 (provide 'init-utils)
