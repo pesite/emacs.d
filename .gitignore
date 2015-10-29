@@ -1,6 +1,8 @@
-**
+*
 !.gitignore
 !init.el
-!lisp/
-!base/
+!lisp
+!lisp/*
+!base
+!base/*
 !LICENSE
