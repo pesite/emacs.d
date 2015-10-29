@@ -51,6 +51,9 @@
 (require 'init-semantic)
 (require 'init-flycheck)
 (require 'init-go)
+(require 'init-lua)
+(require 'init-nginx)
+(require 'init-json)
 
 (provide 'init)
 
