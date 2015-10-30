@@ -6,7 +6,7 @@
   (message "You might want to install golint from https://github.com/golang/lint"))
 
 (unless (executable-find "godef")
-  (message "You might want to install godef from https://github.com/rogpeppe/godef"))
+  (message "You might want to install godef using go get github.com/rogpeppe/godef"))
 
 (unless (executable-find "goimports")
   (message "You might want to install goimports using go get golang.org/x/tools/cmd/goimports"))
