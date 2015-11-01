@@ -15,6 +15,8 @@
 (require 'init-auto-compile)
 (require 'init-exec-path) ;; Set up $PATH
 
+(require-package 'diminish)
+
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-preload-local.el"
 ;;----------------------------------------------------------------------------
@@ -33,7 +35,9 @@
 (require 'init-auto-complete)
 (require 'init-helm)
 ;;(require 'init-helm-thierry)
+(require 'init-paredit)
 (require 'init-multi-web)
+(require 'init-lisp)
 (require 'init-slime)
 (require 'init-gccsense)
 (require 'init-promela)
@@ -45,7 +49,6 @@
 (require 'init-js)
 (require 'init-python)
 (require 'init-cmake)
-(require 'init-paredit)
 (require 'init-rust)
 (require 'init-speedbar)
 (require 'init-semantic)
