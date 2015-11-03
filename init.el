@@ -36,6 +36,7 @@
 (require 'init-helm)
 ;;(require 'init-helm-thierry)
 (require 'init-paredit)
+(require 'init-php)
 (require 'init-multi-web)
 (require 'init-lisp)
 (require 'init-slime)
