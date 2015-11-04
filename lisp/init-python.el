@@ -17,7 +17,13 @@
 
 ;; install and configure jedi
 (require-package 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook '(lambda ()
+                               (jedi:setup)
+                               (setq jedi:environment-root "jedi")  ; or any other name you like
+                               (setq jedi:environment-virtualenv
+                                     (append python-environment-virtualenv
+                                             '("--python" "/usr/bin/python3")))))
 (setq jedi:complete-on-dot t) ; optional
+
 
 (provide 'init-python)
