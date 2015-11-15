@@ -3,6 +3,9 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "base" user-emacs-directory))
 
+;; set file for performance event logging
+;;(setq performance/log-file (expand-file-name "performance.log" user-emacs-directory))
+;;(setq performance/save-history-directory (expand-file-name "histories" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
 
 ;;----------------------------------------------------------------------------
