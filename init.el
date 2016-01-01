@@ -35,6 +35,7 @@
 (require 'init-multiple-cursors)
 (require 'init-ido)
 (require 'init-hippie-expand)
+(require 'init-yasnippet)
 (require 'init-auto-complete)
 (require 'init-helm)
 ;;(require 'init-helm-thierry)
