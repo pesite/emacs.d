@@ -1,4 +1,6 @@
 ;;; -*- lexical-binding: t -*-
+(unless (fboundp 'cl-flet)
+  (require 'cl-lib))
 
 (defun sanityinc/time-subtract-millis (b a)
   (* 1000.0 (float-time (time-subtract b a))))
