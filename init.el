@@ -66,6 +66,7 @@
 (require 'init-lua)
 (require 'init-nginx)
 (require 'init-json)
+(require 'init-multi-term)
 
 (provide 'init)
 
