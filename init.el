@@ -8,6 +8,10 @@
 ;;(setq performance/save-history-directory (expand-file-name "histories" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
 
+;; Set coding
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
