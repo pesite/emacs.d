@@ -26,7 +26,7 @@ build :
 
 test-dep-1 :
 	@cd $(TEST_DIR)                                      && \
-	$(EMACS) $(EMACS_BATCH)  -L .. -l $(TEST_DEP_1) || \
+	$(EMACS) $(EMACS_BATCH) -L .  -L .. -l $(TEST_DEP_1) || \
 	(echo "Can't load test dependency $(TEST_DEP_1).el, run 'make downloads' to fetch it" ; exit 1)
 
 downloads :
@@ -42,7 +42,7 @@ autoloads :
 	      (update-directory-autoloads \"$(WORK_DIR)\"))"
 
 test-autoloads : autoloads
-	@$(EMACS) $(EMACS_BATCH) -l "./$(AUTOLOADS_FILE)"      || \
+	@$(EMACS) $(EMACS_BATCH) -L . -l "./$(AUTOLOADS_FILE)"      || \
 	 ( echo "failed to load autoloads: $(AUTOLOADS_FILE)" && false )
 
 test-travis :
@@ -51,7 +51,7 @@ test-travis :
 test : build test-dep-1 test-autoloads
 	@cd $(TEST_DIR)                                   && \
 	(for test_lib in *-test.el; do                       \
-	    $(EMACS) $(EMACS_BATCH) -L .. -l cl -l init -l $(TEST_DEP_1) -l $$test_lib --eval \
+	    $(EMACS) $(EMACS_BATCH) -L . -L .. -l cl -l init -l $(TEST_DEP_1) -l $$test_lib --eval \
 	    "(progn                                          \
 	      (fset 'ert--print-backtrace 'ignore)           \
 	      (ert-run-tests-batch-and-exit '(and \"$(TESTS)\" (not (tag :interactive)))))" || exit 1; \
