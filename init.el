@@ -71,6 +71,7 @@
 (require 'init-json)
 (require 'init-multi-term)
 (require 'init-vlf)
+(require 'init-ace-jump-mode)
 
 (provide 'init)
 
