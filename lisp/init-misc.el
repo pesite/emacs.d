@@ -1,3 +1,7 @@
+;;; init-misc,el -- miscellaneous config for emacs
+;;; Commentary:
+;;;        There are a few configs that don't fit anywhere else
+;;; Code:
 ;; temporary dir
 (setq temporary-file-directory (expand-file-name "tmp" user-emacs-directory))
 
@@ -25,18 +29,14 @@
 (setq split-width-threshold 0)
 
 ;; set default font
-(set-default-font "-b&h-lucidatypewriter-medium-r-normal-sans-12-116-75-75-m-70-iso10646-1")
+(set-frame-font "-b&h-lucidatypewriter-medium-r-normal-sans-12-116-75-75-m-70-iso10646-1")
 
 ;; add custom commands
- ;;; cut out line
-(defun kill-whole-line ()
-  (interactive)
-  (beginning-of-line)
-  (kill-line))
-(global-set-key (kbd "C-S-x") 'kill-whole-line)
  ;;; find and insert path
 (defun find-and-insert-path ()
-  (interactive)
+  "Insert the path of a file in current point.
+Use `ido-find-file` to get the file, of which the path should be inserted.
+  (interactive)"
   (let ((origin (current-buffer)))
     (ido-find-file)
     (let ((name (buffer-file-name)))
@@ -94,3 +94,5 @@
 (setq-default major-mode 'org-mode)
 
 (provide 'init-misc)
+
+;;; init-misc.el ends here

@@ -1,4 +1,7 @@
 ;;; init.el --- user init file      -*- no-byte-compile: t -*-
+;;; Commentary:
+
+;;; Code:
 ;; add .emacs.d/lisp to load-path
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "base" user-emacs-directory))
@@ -75,3 +78,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+;;; init.el ends here
