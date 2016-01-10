@@ -12,3 +12,4 @@
 !README.md
 !.travis.yml
 !travis_grid.pl
+!Makefile
