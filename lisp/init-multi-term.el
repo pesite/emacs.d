@@ -1,3 +1,7 @@
+;;; package -- configure multi-term.
+;;; Commentary:
+
+;;; Code:
 (require-package 'multi-term)
 
 ;; Disable yasnippet, so we can tab-complete
@@ -8,3 +12,4 @@
                             (cua-mode 1)))
 
 (provide 'init-multi-term)
+;;; init-multi-term.el ends here
