@@ -42,20 +42,22 @@ LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
 
     (add-hook 'kill-emacs-hook
               #'(lambda ()
-                  (let ((run-time (get-internal-run-time))
-                        (cur-time (current-time)))
-                    (let ((session-length (performance/session-float-length cur-time)))
+                  (unless noninteractive
+                    (let ((run-time (get-internal-run-time))
+                          (cur-time (current-time)))
+                      (let ((session-length (performance/session-float-length cur-time)))
 
-                      (if performance/save-history-directory
-                          (progn
-                            (performance/push-event "SESSION-END" (concat (format-time-string "%S s; %3N ms" run-time) " Average load: " (format "%.3f" (/ (float-time run-time) session-length)) " over " (format "%.3f s" session-length) "; " performance/session-id))
-                            (write-region (command-history) nil (expand-file-name performance/session-id performance/save-history-directory)))
-                        (performance/push-event "SESSION-END" (concat (format-time-string "%S s; %3N ms" run-time) " Average load: " (format "%.3f" (/ (float-time run-time) session-length)) " over " (format "%.3f s" session-length))))))))))
-
-(performance/push-event "SESSION-START"
                         (if performance/save-history-directory
-                            (format "%s; %s" (format-time-string "%S s; %3N ms" (get-internal-run-time)) performance/session-id)
-                          (format-time-string "%S s; %3N ms" (get-internal-run-time))))
+                            (progn
+                              (performance/push-event "SESSION-END" (concat (format-time-string "%S s; %3N ms" run-time) " Average load: " (format "%.3f" (/ (float-time run-time) session-length)) " over " (format "%.3f s" session-length) "; " performance/session-id))
+                              (write-region (command-history) nil (expand-file-name performance/session-id performance/save-history-directory)))
+                          (performance/push-event "SESSION-END" (concat (format-time-string "%S s; %3N ms" run-time) " Average load: " (format "%.3f" (/ (float-time run-time) session-length)) " over " (format "%.3f s" session-length)))))))))))
+
+(unless noninteractive
+  (performance/push-event "SESSION-START"
+                          (if performance/save-history-directory
+                              (format "%s; %s" (format-time-string "%S s; %3N ms" (get-internal-run-time)) performance/session-id)
+                            (format-time-string "%S s; %3N ms" (get-internal-run-time)))))
 
 
 (add-hook 'after-init-hook
