@@ -32,6 +32,15 @@
 (set-frame-font "-b&h-lucidatypewriter-medium-r-normal-sans-12-116-75-75-m-70-iso10646-1")
 
 ;; add custom commands
+ ;;; cut out line
+(defun custom-kill-whole-line ()
+  "Kill a whole line similar to kill-whole-line.
+Not as fancy, as it does not support multi line kill or better undo."
+  (interactive)
+  (beginning-of-line)
+  (kill-line))
+(global-set-key (kbd "<C-S-backspace>") 'custom-kill-whole-line)
+
  ;;; find and insert path
 (defun find-and-insert-path ()
   "Insert the path of a file in current point.
