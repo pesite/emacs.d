@@ -72,6 +72,8 @@
 (require 'init-multi-term)
 (require 'init-vlf)
 (require 'init-ace-jump-mode)
+(require 'init-string-inflection)
+(require 'init-docker)
 
 (provide 'init)
 
