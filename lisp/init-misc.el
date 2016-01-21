@@ -44,8 +44,8 @@ Not as fancy, as it does not support multi line kill or better undo."
  ;;; find and insert path
 (defun find-and-insert-path ()
   "Insert the path of a file in current point.
-Use `ido-find-file` to get the file, of which the path should be inserted.
-  (interactive)"
+Use `ido-find-file` to get the file, of which the path should be inserted."
+  (interactive)
   (let ((origin (current-buffer)))
     (ido-find-file)
     (let ((name (buffer-file-name)))
