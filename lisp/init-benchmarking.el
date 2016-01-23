@@ -50,7 +50,7 @@ LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
                         (if performance/save-history-directory
                             (progn
                               (performance/push-event "SESSION-END" (concat (format-time-string "%S s; %3N ms" run-time) " Average load: " (format "%.3f" (/ (float-time run-time) session-length)) " over " (format "%.3f s" session-length) "; " performance/session-id))
-                              (write-region (command-history) nil (expand-file-name performance/session-id performance/save-history-directory)))
+                              (if (> 0 (length command-history)) (write-region (command-history) nil (expand-file-name performance/session-id performance/save-history-directory))))
                           (performance/push-event "SESSION-END" (concat (format-time-string "%S s; %3N ms" run-time) " Average load: " (format "%.3f" (/ (float-time run-time) session-length)) " over " (format "%.3f s" session-length)))))))))))
 
 (unless noninteractive
