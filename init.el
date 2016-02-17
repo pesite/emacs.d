@@ -74,6 +74,7 @@
 (require 'init-ace-jump-mode)
 (require 'init-string-inflection)
 (require 'init-docker)
+(require 'init-editorconfig)
 
 (provide 'init)
 
