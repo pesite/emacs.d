@@ -1,7 +1,10 @@
-;; replace js-mode by js2-mode for proper indentation
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;;(setq-default js2-basic-offset 2)
-(defvaralias 'js2-basic-offset 'js-indent-level)
+;;; package -- provide js3 mode for javascript.
+;;; Commentary:
+
+;;; Code:
+(require-and-load-package 'js3-mode)
+
+(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
 
 (provide 'init-js)
+;;; init-js.el ends here
