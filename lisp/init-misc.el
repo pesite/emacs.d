@@ -28,9 +28,6 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
-;; set default font
-(set-frame-font "-b&h-lucidatypewriter-medium-r-normal-sans-12-116-75-75-m-70-iso10646-1")
-
 ;; add custom commands
  ;;; cut out line
 (defun custom-kill-whole-line ()
@@ -69,9 +66,19 @@ Use `ido-find-file` to get the file, of which the path should be inserted."
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;; color set
-(set-cursor-color "DarkOrange")
-(set-background-color "black")
-(set-foreground-color "white")
+(defun set-color-theme ()
+  (set-cursor-color "DarkOrange")
+  (set-background-color "black")
+  (set-foreground-color "white")
+  ;; set default font
+  (set-frame-font "-b&h-lucidatypewriter-medium-r-normal-sans-12-116-75-75-m-70-iso10646-1"))
+(set-color-theme)
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (select-frame frame)
+                (set-color-theme))))
 
 ;; deactivate copy on setting mouse mark
 (setq mouse-drag-copy-region nil)
