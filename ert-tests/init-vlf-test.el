@@ -7,10 +7,10 @@
 ;;; Code:
 ;;; noninteractive
 
-(ert-deftest has-vlf nil
-  "Emacs should have access to vlf"
-  (should (featurep 'init-vlf))
-  (should (featurep 'vlf)))
+;; (ert-deftest has-vlf nil
+;;   "Emacs should have access to vlf"
+;;   (should (featurep 'init-vlf))
+;;   (should (featurep 'vlf)))
 
 ;;
 ;; Emacs
