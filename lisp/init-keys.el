@@ -10,4 +10,6 @@
 (define-key isearch-mode-map [dead-diaeresis] nil)
 (define-key isearch-mode-map [dead-tilde] nil)
 
+(global-set-key (kbd "M-i") 'imenu)
+
 (provide 'init-keys)

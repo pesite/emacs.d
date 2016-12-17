@@ -72,8 +72,10 @@
 (require 'init-multi-term)
 (require 'init-vlf)
 (require 'init-ace-jump-mode)
+;;(require 'init-ctags)
 (require 'init-string-inflection)
 (require 'init-docker)
+(require 'init-gradle)
 (require 'init-editorconfig)
 
 (provide 'init)
