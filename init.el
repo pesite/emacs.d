@@ -55,7 +55,7 @@
 (require 'init-promela)
 (require 'init-nusmv)
 (require 'init-octave)
-(require 'init-scala)
+;; (require 'init-scala)
 (require 'init-jslint)
 (require 'init-flymake)
 (require 'init-js)
