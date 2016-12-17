@@ -33,8 +33,8 @@ env:
   matrix:
 #   - EMACS=xemacs21
 #    - EMACS=emacs22
-    - EMACS=emacs23
-    - EMACS=emacs24
+#    - EMACS=emacs23
+#    - EMACS=emacs24
     - EMACS=emacs-snapshot
   global:
     - SOME_TOKEN=some_value
@@ -47,8 +47,8 @@ matrix:
   allow_failures:
 #    - env: EMACS=xemacs21
 #    - env: EMACS=emacs22
-    - env: EMACS=emacs23
-    - env: EMACS=emacs-snapshot
+#    - env: EMACS=emacs23
+#    - env: EMACS=emacs-snapshot
 
 ###
 ### limit build attempts to defined branches
