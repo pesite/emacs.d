@@ -46,7 +46,6 @@
 (require 'init-misc)
 (require 'init-keys)
 
-(require 'init-auto-complete)
 (require 'init-multiple-cursors)
 (require 'init-ido)
 (require 'init-hippie-expand)
@@ -56,6 +55,7 @@
 (require 'init-paredit)
 (require 'init-php)
 (require 'init-multi-web)
+(require 'init-auto-complete)
 (require 'init-lisp)
 (require 'init-slime)
 (require 'init-gccsense)
