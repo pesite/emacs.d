@@ -103,6 +103,12 @@ Use `ido-find-file` to get the file, of which the path should be inserted."
  '(eclim-executable "~/eclipse/eclim")
  '(org-support-shift-select t))
 
+;; emms - TODO: Move into emms-init
+;; (define-emms-simple-player ffplay '(file)
+;;   (regexp-opt '(".mp3"))
+;;   "ffplay")
+;; (setq emms-player-list `(,emms-player-ffplay))
+
 ;; load editorconfig
 (load "editorconfig")
 

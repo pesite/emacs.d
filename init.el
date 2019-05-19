@@ -85,6 +85,7 @@
 (require 'init-docker)
 (require 'init-gradle)
 (require 'init-editorconfig)
+(require 'init-eopengrok)
 
 (provide 'init)
 
