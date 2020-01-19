@@ -72,7 +72,8 @@
 
 ;; set customization file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(if (file-exists-p (expand-file-name "custom.el" user-emacs-directory))
+    (load custom-file))
 
 ;; enable debug tracing, if set
 (if my/config/debug-tracing-enabled-p
