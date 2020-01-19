@@ -54,7 +54,7 @@ test : build test-dep-1 test-autoloads
 	    $(EMACS) $(EMACS_BATCH)  -L . -L .. -l cl -l $(TEST_DEP_1) -l $$test_lib --eval \
 	    "(progn  \
         (setq user-emacs-directory \"$(WORK_DIR)\") \
-        (require 'init) \
+        (load-file \"$(WORK_DIR)/init.el\") \
 	      (fset 'ert--print-backtrace 'ignore)           \
 	      (ert-run-tests-batch-and-exit '(and \"$(TESTS)\" (not (tag :interactive)))))" || exit 1; \
 	done)

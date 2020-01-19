@@ -6,7 +6,6 @@
 (use-package init-flycheck)
 (use-package init-yasnippet)
 (use-package init-company)
-;; (use-package init-auto-complete) ;; DISABLED Due to lack of development
 (use-package init-python)
 (use-package init-auto-commit-mode)
 (use-package init-avy)
