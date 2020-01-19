@@ -7,7 +7,11 @@
 ;;; Code:
 ;;; noninteractive
 
-;;; Those are smoke tests, in a way, because package.el should handle everything properly
+(ert-deftest has-module-package nil
+  "Emacs should have loaded package."
+  (should (featurep 'package)))
+
+;;; The following are smoke tests, in a way, because package.el should handle everything properly
 
 (ert-deftest has-module-ido nil
   "Emacs should have loaded ido."
