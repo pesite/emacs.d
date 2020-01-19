@@ -35,6 +35,8 @@ env:
 #    - EMACS=emacs22
 #    - EMACS=emacs23
 #    - EMACS=emacs24
+#    - EMACS=emacs25
+    - EMACS=emacs26
     - EMACS=emacs-snapshot
   global:
     - SOME_TOKEN=some_value
