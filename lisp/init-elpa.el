@@ -2,10 +2,8 @@
 (require 'package)
 ;; Any add to list for package-archives (to add marmalade or melpa) goes here
 (setq
- package-archives '(("gnu" . "~/localelpa/gnu/")
-		    ("org" . "~/localelpa/org/")
-		    ("melpa-stable" . "~/localelpa/stable-melpa/")
-		    ("melpa" . "~/localelpa/melpa/")))
+ package-archives '(("org" . "http://orgmode.org/elpa/")
+		    ("melpa" . "https://melpa.org/packages/")))
 
 (defun init-elpa/initialize-package ()
   (unless nil ;package--initialized
@@ -14,9 +12,6 @@
     (package-initialize)))
 
 (init-elpa/initialize-package)
-
-;; Un-comment below line if you follow "Install stable version in easiest way"
-;; (setq package-archives '(("localelpa" . "~/.emacs.d/localelpa/") ("myelpa" . "~/projs/myelpa/")))
 
 ;;; On-demand installation of packages
 
